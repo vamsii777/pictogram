@@ -7,7 +7,7 @@ import theme from '../src/theme';
 import {Router} from "next/router";
 import {CircularProgress} from "@material-ui/core";
 import Progress from "../components/Progress";
-
+import 'tailwindcss/tailwind.css'
 export default function MyApp({ Component, pageProps }) {
     const [loading, setLoading] = React.useState(false);
     React.useEffect(() => {
@@ -38,7 +38,7 @@ export default function MyApp({ Component, pageProps }) {
     <React.Fragment>
       <Head>
         <title>My page</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
