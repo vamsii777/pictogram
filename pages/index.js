@@ -10,12 +10,14 @@ import Copyright from "../components/Copyright";
 import {makeStyles} from "@material-ui/core/styles";
 import {Background, Parallax} from 'react-parallax';
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
-import { useMediaQuery } from 'react-responsive'
+import MediaQuery, { useMediaQuery } from 'react-responsive'
 import Container from "@material-ui/core/Container";
 import Image from 'next/image'
 import Header from "../src/Header";
 import IndexDesktop from "../src/index/IndexDesktop";
 import IndexMobile from "../src/index/IndexMobile";
+import IndexTablet from "../src/index/IndexTablet";
+import IndexPro2 from "../src/index/IndexPro2";
 
 
 
@@ -31,10 +33,18 @@ const Mobile = ({ children }) => {
     const isMobile = useMediaQuery({ maxWidth: 767 })
     return isMobile ? children : null
 }
+
+const PadPro12 = ({ children }) => {
+    const PadPro12 = useMediaQuery({ maxHeight: 1366,minWidth: 1024, orientation: "portrait"})
+    return PadPro12 ? children : null
+}
+
 const Default = ({ children }) => {
     const isNotMobile = useMediaQuery({ minWidth: 768 })
     return isNotMobile ? children : null
 }
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -102,6 +112,14 @@ const TEXTS = [
 export default function Index() {
   const classes = useStyles();
   const [index, setIndex] = React.useState(0);
+    const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 })
+    const isBigScreen = useMediaQuery({ minWidth: 1824 })
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
+    const isTabletOrMobile2 = useMediaQuery({ maxWidth: 1366 , orientation: "landscape"})
+    const isPortrait = useMediaQuery({ orientation: 'portrait' })
+    const isLandscape = useMediaQuery({ orientation: 'landscape' })
+    const isRetina = useMediaQuery({ minResolution: '2dppx' })
+    const isPro = useMediaQuery({ minWidth: 1366 })
   return (
       <>
         <Helmet
@@ -112,18 +130,23 @@ export default function Index() {
               },
             ]}>
         </Helmet>
+          <IndexDesktop/>
+        {/*<Desktop>*/}
+        {/*    <IndexDesktop/>*/}
+        {/*</Desktop>*/}
 
-        <Desktop>
-            <IndexDesktop/>
-        </Desktop>
+        {/*  /!*<Tablet>*!/*/}
+        {/*  /!* <IndexTablet/>*!/*/}
+        {/*  /!*</Tablet>*!/*/}
 
-          <Tablet>
-              <body>This website is still under-development so please visit the website from a larger screen. As it's still being optimized for mobile.</body>
-          </Tablet>
+        {/*  <PadPro12>*/}
+        {/*      hello*/}
+        {/*  </PadPro12>*/}
 
-          <Mobile>
-              <IndexMobile/>
-          </Mobile>
+        {/*  <Mobile>*/}
+        {/*      <IndexMobile/>*/}
+        {/*  </Mobile>*/}
+
       </>
 
   );
